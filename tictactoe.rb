@@ -1,24 +1,7 @@
-class Player
-  attr_accessor :name
-  def initialize(name)
-    @name = name.downcase
-  end
-end
-
-
-class Game
-  def initialize
-    @p1 = Player.new("Player 1")
-    @p2 = Player.new("Player 2")
-    TicTac.initialize
-  end
-end
-
-
-
-
+require './gamecontroller.rb'
+# This module holds the TicTacToe game
 module TicTac
-
+  # Create tictactoe, the necessary instance variables, and call the controller
   def TicTac.initialize 
     @win = false
     @stale = false
@@ -31,6 +14,7 @@ module TicTac
     TicTac.controller
   end
 
+  #controls the game until a endstate is found
   def TicTac.controller
     TicTac.draw_board
     until @win
@@ -44,7 +28,7 @@ module TicTac
     end
   end
 
-
+  #Instatiates the current boards state
   def TicTac.draw_board
     @grid.each_with_index do |square, index|
       if (index+1) % 3 == 0
@@ -56,7 +40,7 @@ module TicTac
     end
   end
 
-
+  # Controller for player input
   def TicTac.game_play
     if @move_count == 9
       @stale = true
@@ -75,6 +59,7 @@ module TicTac
     end
   end
 
+  # Boolean if move is playable
   def TicTac.valid_move?(input)
     if @grid[input - 1] == 'O' or @grid[input - 1] == 'X'
       TicTac.draw_board
@@ -84,6 +69,7 @@ module TicTac
     true
   end
 
+  # Checks winning combinations
   def TicTac.combo?
     player = nil
     @winCases.each do |a|
@@ -98,9 +84,11 @@ module TicTac
     return false
   end
 
+  # Stalemate message
   def TicTac.stalemate
     puts "Game ended in a stalemate."
   end
 end
 
-Game.new
+g = Games::Game.new
+g.games("tictactoe")
