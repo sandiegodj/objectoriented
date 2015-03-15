@@ -23,7 +23,7 @@ module Games
     # Decide which game to play
     def games(game)
       TicTac.initialize if game == "tictactoe"
-      Mastermind.initialize if game == "mastermind"
+      Mastermind::initialize if game == "mastermind"
     end
   end
 end
