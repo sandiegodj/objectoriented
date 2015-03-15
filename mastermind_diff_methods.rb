@@ -3,74 +3,74 @@ require './gamecontroller'
 
 module Mastermind
 
-	def Mastermind.initialize
+	def initialize
 		@p = %w(A B C D E F)
 		@code = []
 		@win = false
 		@turn = 1
-		Mastermind.router
+		router
 	end
 
-	def Mastermind.router
+	def router
 		puts "Press 1 to be the Guesser, 2 to be the creator."
 		input = gets.chomp
 		if input == "1"
-			Mastermind.controller
+			controller
 		else
-			Mastermind.ai_controller
+			ai_controller
 		end
 	end
 
-	def Mastermind.controller
-		Mastermind.generate_code
+	def controller
+		generate_code
 
 		while @win == false
-			Mastermind.user_guess
-			Mastermind.check_guess
+			user_guess
+			check_guess
 			if @turn > 7
 				puts "Game Over!"
-				Mastermind.replay?
+				replay?
 			end
 		end
 		puts "Congrats, you won!"
-		Mastermind.replay?
+		replay?
 	end
 
-	def Mastermind.ai_controller
-		Mastermind.user_generate_code
+	def ai_controller
+		user_generate_code
 		while @win == false
-			Mastermind.ai_check_guess
+			ai_check_guess
 		end
 		puts "The computer guess in"
 	end
 
-	def Mastermind.user_generate_code
+	def user_generate_code
 		puts "Please choose a 4 character code using A - F"
 		@code = gets.chomp.upcase.split('')
-		unless Mastermind.good_input?(@code)
+		unless good_input?(@code)
 			puts "Sorry, that's an invalid code"
-			Mastermind.user_generate_code
+			user_generate_code
 		end
 	end
 
-	def Mastermind.generate_code
+	def generate_code
 		4.times do
 			@code << @p[rand(0..@p.length - 1)]
 		end
 		puts @code
 	end
 
-	def Mastermind.user_guess
+	def user_guess
 		puts "Enter guess:"
 		@guess = gets.chomp.upcase.split('')
 
-		unless Mastermind.good_input?(@guess)
+		unless good_input?(@guess)
 			puts "Sorry, that's an invalid guess."
-			Mastermind.user_guess
+			user_guess
 		end
 	end
 
-	def Mastermind.good_input?(input)
+	def good_input?(input)
 		if input.length != 4
 			return false
 		end
@@ -81,7 +81,7 @@ module Mastermind
 		end
 	end
 
-	def Mastermind.check_guess
+	def check_guess
 		@guess_temp = @guess
 		@code_temp = @code.dup
 		@feedback = [0,0]
@@ -107,16 +107,16 @@ module Mastermind
 		puts @feedback.join(',')
 	end
 
-	def Mastermind.ai_check_guess
+	def ai_check_guess
 
 	end
 
 
-	def Mastermind.replay?
+	def replay?
 		puts "play again? y/n"
 		input = gets.chomp.downcase
 		if input == 'y'
-			Mastermind.initialize
+			initialize
 		end
 		exit
 	end
