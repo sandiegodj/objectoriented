@@ -1,4 +1,3 @@
-require './gamecontroller.rb'
 # This module holds the TicTacToe game
 module TicTac
   # Create tictactoe, the necessary instance variables, and call the controller
@@ -90,5 +89,3 @@ module TicTac
   end
 end
 
-g = Games::Game.new
-g.games("tictactoe")

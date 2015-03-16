@@ -1,10 +1,10 @@
-require './gamecontroller'
 
-
+# AI not quite done
 module Mastermind
 
 	def Mastermind.initialize
 		@p = %w(A B C D E F)
+			A..F)
 		@code = []
 		@win = false
 		@turn = 1
@@ -27,7 +27,7 @@ module Mastermind
 		while @win == false
 			Mastermind.user_guess
 			Mastermind.check_guess
-			if @turn > 7
+			if @turn > 10
 				puts "Game Over!"
 				Mastermind.replay?
 			end
@@ -38,10 +38,15 @@ module Mastermind
 
 	def Mastermind.ai_controller
 		Mastermind.user_generate_code
-		while @win = false
+		@guess = [nil, nil, nil, nil]
+		while @win == false
 			Mastermind.ai_check_guess
+			if @turn > 10
+				puts "You beat the computer!"
+				Mastermind.replay?
+			end
 		end
-		puts "The computer guess in"
+		puts "The computer got it."
 	end
 
 	def Mastermind.user_generate_code
@@ -108,6 +113,13 @@ module Mastermind
 	end
 
 	def Mastermind.ai_check_guess
+		@code_temp == @code.dup
+
+		@code_temp.each_with_index do |c, i|
+			if @guess[i] == nil
+				#run pattern to find.
+			end
+		end
 
 	end
 
@@ -120,8 +132,4 @@ module Mastermind
 		end
 		exit
 	end
-
 end
-
-g = Games::Game.new
-g.games("mastermind")
