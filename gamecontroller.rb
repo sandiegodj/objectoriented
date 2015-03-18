@@ -3,12 +3,8 @@ require "./mastermind"
 # This module holds general items for command line games
 module Games
 
-  # This class is a player object
   class Player
     attr_accessor :name
-
-
-    # Create the player and store their name
     def initialize(name)
       @name = name.downcase
     end
@@ -16,8 +12,6 @@ module Games
 
   #This class is the general game object
   class Game
-
-    #Create a new game and initialize the player
     def initialize
       puts "Play tictactoe or mastermind?"
       @input = gets.chomp.downcase
@@ -25,7 +19,6 @@ module Games
       self.games
     end
 
-    # Decide which game to play
     def games
       if @input == "tictactoe"
         @p1 = Player.new("Player 1")
