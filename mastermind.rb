@@ -4,7 +4,6 @@ module Mastermind
 
 	def Mastermind.initialize
 		@p = %w(A B C D E F)
-			A..F)
 		@code = []
 		@win = false
 		@turn = 1

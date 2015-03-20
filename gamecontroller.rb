@@ -19,7 +19,7 @@ module Games
 
     #Create a new game and initialize the player
     def initialize
-      puts "Play tictactoe or mastermind?"
+      puts "1. tictactoe \n 2. mastermind? (type number)" 
       @input = gets.chomp.downcase
 
       self.games
@@ -27,11 +27,11 @@ module Games
 
     # Decide which game to play
     def games
-      if @input == "tictactoe"
+      if @input == "1"
         @p1 = Player.new("Player 1")
         @p2 = Player.new("Player 2")
         TicTac.initialize
-      elsif @input == "mastermind"
+      elsif @input == "2"
         @p1 = Player.new("Player 1")
         Mastermind.initialize 
       else
