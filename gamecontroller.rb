@@ -13,7 +13,7 @@ module Games
   #This class is the general game object
   class Game
     def initialize
-      puts "1. tictactoe \n 2. mastermind? (type number)" 
+      print "1. tictactoe \n2. mastermind?\nnumber:" 
       @input = gets.chomp.downcase
 
       self.games

@@ -29,6 +29,7 @@ module TicTac
 
   #Instatiates the current boards state
   def TicTac.draw_board
+    system "clear" or system "cls"
     @grid.each_with_index do |square, index|
       if (index+1) % 3 == 0
         print " #{square} \n"
@@ -37,6 +38,7 @@ module TicTac
         print " #{square} |"
       end
     end
+    puts ""
   end
 
   # Controller for player input
@@ -46,7 +48,7 @@ module TicTac
     end
 
     @move_count % 2 == 0 ? @turn = 'X' : @turn = 'O'
-    puts " turn"
+    print "#{@turn}'s turn:"
     input = gets.chomp.to_i
 
     if TicTac.valid_move?(input)
