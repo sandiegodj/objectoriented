@@ -61,7 +61,6 @@ module Mastermind
 		4.times do
 			@code << @p[rand(0..@p.length - 1)]
 		end
-		puts @code
 	end
 
 	def Mastermind.user_guess
