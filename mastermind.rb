@@ -11,6 +11,7 @@ module Mastermind
 	end
 
 	def Mastermind.router
+		system "clear" or system "cls"
 		puts "Press 1 to be the Guesser, 2 to be the creator."
 		input = gets.chomp
 		if input == "1"
@@ -22,6 +23,9 @@ module Mastermind
 
 	def Mastermind.controller
 		Mastermind.generate_code
+		puts "Please choose a 4 letter combination containing A - F"
+		puts "Feedback example: (2 correct positions, 1 correct letter)"
+		puts "(2,1)"
 
 		while @win == false
 			Mastermind.user_guess
@@ -107,7 +111,7 @@ module Mastermind
 			end
 		end
 		@turn +=1
-		puts @feedback.join(',')
+		puts @feedback.join(',').insert(0,"(") << ")"
 	end
 
 	def Mastermind.ai_check_guess
